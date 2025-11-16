@@ -55,3 +55,10 @@ while True:
 
     output=cv2.addWeighted(result1,1,result2,1,0)
     
+    cv2.imshow("Output",output)
+    k=cv2.waitKey(10)
+    if k==27:
+        break
+video.release()
+
+cv2.destroyAllWindows()
