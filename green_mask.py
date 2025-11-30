@@ -30,13 +30,13 @@ while True:
     
     hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
     
-    lower_green=np.array([100,40,40])
-    higher_green=np.array([100,255,255])
+    lower_green=np.array([120,40,40])
+    higher_green=np.array([120,255,255])
     
     mask1=cv2.inRange(hsv,lower_green,higher_green)
     
-    lower_green=np.array([155,40,40])
-    higher_green=np.array([180,255,255])
+    lower_green=np.array([175,40,40])
+    higher_green=np.array([190,255,255])
     
     mask2=cv2.inRange(hsv,lower_green,higher_green)
     
@@ -48,7 +48,15 @@ while True:
     mask2=cv2.bitwise_not(mask1)
     
     
-    result1=cv2.bitwise_and(background,background,mask=mask1)
+    result1=cv2.bitwise_and(bg,bg,mask=mask1)
     result2=cv2.bitwise_and(image,image,mask=mask2)
 
     output=cv2.addWeighted(result1,1,result2,1,0)
+    
+    cv2.imshow("Output",output)
+    k=cv2.waitKey(10)
+    if k==27:
+        break
+video.release()
+
+cv2.destroyAllWindows()
